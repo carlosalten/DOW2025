@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+<body>
+    <h2>Formularios</h2>
+    <form action="">
+        <div>
+            <label for="txtnombre">Nombre:</label><br>
+            <input type="text" id="txtnombre" value="El Profe">
+        </div>
+        <div>
+            <label for="txtemail">Email</label><br>
+            <input type="email" id="txtemail">
+        </div>
+        <div>
+            <label for="txtpassword">Contraseña</label><br>
+            <input type="password" id="txtpassword">
+        </div>
+        <div>
+            <label for="combocarrera">Carrera</label><br>
+            <select id="combocarrera" size="10">
+                <!-- <option value="0">Seleccione</option> -->
+                <option value="10">T.U. en Informática</option>
+                <option value="20">T.U. en Ciencia de Datos</option>
+                <option value="30" selected>Ingeniería en Informática</option>
+            </select>
+        </div>
+        <div>
+            <h4>Nacionalidad</h4>
+            <input type="radio" id="radiochileno" name="radionacionalidad" value="chileno" checked>
+            <label for="radiochileno">Chileno</label><br>
+            <input type="radio" id="radioextranjero" name="radionacionalidad" value="extranjero">
+            <label for="radioextranjero">Extranjero</label><br>
+        </div>
+        <div>
+            <h4>Beneficios</h4>
+            <input type="checkbox" id="checkjunaeb">
+            <label for="checkjunaeb">Junaeb</label><br>
+            <input type="checkbox" id="checkgratuidad">
+            <label for="checkgratuidad">Gratuidad</label><br>
+        </div>
+        <div>
+            <button type="reset">Restablecer</button>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+</body>
+</html>

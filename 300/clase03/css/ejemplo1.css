@@ -1,0 +1,15 @@
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: darkblue;
+}
+
+#titulo-especial{
+    font-family: 'Times New Roman', Times, serif;
+    color:blue;
+}
+
+/* esta es una clase */
+.h2-destacado{
+    color: red;
+    text-decoration: underline;
+}
