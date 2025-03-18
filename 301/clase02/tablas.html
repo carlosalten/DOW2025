@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas</title>
+    <style>
+        table,th,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th,td{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tablas</h2>
+    <table>
+        <!-- encabezado de la tabla -->
+         <thead>
+            <tr>
+                <th>Campo1</th>
+                <th>Campo2</th>
+                <th>Campo3</th>
+                <th>Campo4</th>
+            </tr>
+         </thead>
+
+        <!-- cuerpo de la tabla -->
+         <tbody>
+            <tr>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+                <td>D</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td>F</td>
+                <td>G</td>
+                <td>H</td>
+            </tr>
+         </tbody>
+    </table>
+
+    <br>
+
+    <table>
+        <!-- encabezado de la tabla -->
+         <thead>
+            <tr>
+                <th colspan="4">Datos de la Tabla</th>
+            </tr>
+            <tr>
+                <th>Campo1</th>
+                <th>Campo2</th>
+                <th>Campo3</th>
+                <th>Campo4</th>
+            </tr>
+         </thead>
+
+        <!-- cuerpo de la tabla -->
+         <tbody>
+            <tr>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+                <td>D</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td>F</td>
+                <td colspan="2">G H</td>
+                <!-- <td>H</td> -->
+            </tr>
+            <tr>
+                <td>I</td>
+                <td>J</td>
+                <td>K</td>
+                <td>L</td>
+            </tr>
+         </tbody>
+    </table>
+
+    <br>
+
+    <table>
+        <!-- encabezado de la tabla -->
+         <thead>
+            <tr>
+                <th>Campo1</th>
+                <th>Campo2</th>
+                <th>Campo3</th>
+                <th>Campo4</th>
+            </tr>
+         </thead>
+
+        <!-- cuerpo de la tabla -->
+         <tbody>
+            <tr>
+                <td>A</td>
+                <td rowspan="3">B<br>F<br>J</td>
+                <td>C</td>
+                <td>D</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <!-- <td>F</td> -->
+                <td>G</td>
+                <td>H</td>
+            </tr>
+            <tr>
+                <td>I</td>
+                <!-- <td>J</td> -->
+                <td>K</td>
+                <td>L</td>
+            </tr>
+         </tbody>
+    </table>
+</body>
+</html>
