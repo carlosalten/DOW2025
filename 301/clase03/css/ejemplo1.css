@@ -1,0 +1,14 @@
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:darkblue;
+}
+
+/* En CSS los id se identifican con # */
+#titulo-especial{
+    color:blue;
+}
+
+.subtitulo-destacado{
+    color:red;
+    text-decoration: underline;
+}
