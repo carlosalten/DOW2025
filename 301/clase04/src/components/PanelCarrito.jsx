@@ -1,4 +1,5 @@
-export default function PanelCarrito({ carrito }) {
+export default function PanelCarrito({ carrito, removeJuegoCarrito, add1Juego, remove1Juego }) {
+	const totalCarrito = () => carrito.reduce((total, juego) => total + juego.precio * juego.cantidad, 0)
 	return (
 		<div className="offcanvas offcanvas-end" tabIndex="-1" id="ocCarrito" aria-labelledby="offcanvasExampleLabel">
 			<div className="offcanvas-header">
@@ -17,7 +18,7 @@ export default function PanelCarrito({ carrito }) {
 										<th scope="col">Nº</th>
 										<th scope="col">Juego</th>
 										<th scope="col">Precio</th>
-										<th scope="col">Cantidad</th>
+										<th scope="col">Cant</th>
 										<th scope="col"></th>
 									</tr>
 								</thead>
@@ -27,9 +28,27 @@ export default function PanelCarrito({ carrito }) {
 											<td className="text-center">{index + 1}</td>
 											<td>{juego.nombre}</td>
 											<td>${juego.precio.toLocaleString('es-ES')}</td>
-											<td>{juego.cantidad}</td>
+											<td className="text-center">{juego.cantidad}</td>
 											<td className="text-center">
-												<button type="button" className="btn btn-sm btn-danger">
+												<button
+													type="button"
+													className="btn btn-sm btn-outline-info me-1"
+													onClick={() => remove1Juego(juego.id)}
+												>
+													-
+												</button>
+												<button
+													type="button"
+													className="btn btn-sm btn-outline-info me-1"
+													onClick={() => add1Juego(juego.id)}
+												>
+													+
+												</button>
+												<button
+													type="button"
+													className="btn btn-sm btn-danger"
+													onClick={() => removeJuegoCarrito(juego.id)}
+												>
 													X
 												</button>
 											</td>
@@ -39,7 +58,7 @@ export default function PanelCarrito({ carrito }) {
 							</table>
 						</div>
 						<div className="alert alert-light text-end">
-							<span className="fw-bold">Total:</span> $106.970
+							<span className="fw-bold">Total:</span> ${totalCarrito().toLocaleString('es-ES')}
 						</div>
 					</>
 				)}

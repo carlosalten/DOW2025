@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Juego from './components/Juego'
@@ -6,7 +6,17 @@ import PanelCarrito from './components/PanelCarrito'
 import { juegos } from './data/juegos'
 
 function App() {
-	const [carrito, setCarrito] = useState([])
+	const carritoInicial = () => {
+		const carritoLocalStorage = localStorage.getItem('carrito')
+		return carritoLocalStorage ? JSON.parse(carritoLocalStorage) : []
+	}
+
+	// const [carrito, setCarrito] = useState([])
+	const [carrito, setCarrito] = useState(carritoInicial)
+
+	useEffect(() => {
+		localStorage.setItem('carrito', JSON.stringify(carrito))
+	}, [carrito])
 
 	function addJuegoCarrito(juego) {
 		const existeEnCarrito = carrito.includes(juego)
@@ -24,6 +34,33 @@ function App() {
 		}
 	}
 
+	function removeJuegoCarrito(idJuego) {
+		const nuevoCarrito = carrito.filter(juegoCarrito => juegoCarrito.id !== idJuego)
+		setCarrito(nuevoCarrito)
+	}
+
+	function add1Juego(idJuego) {
+		const MAX_JUEGOS = 3
+		const nuevoCarrito = carrito.map(juego => {
+			if (juego.id === idJuego && juego.cantidad < MAX_JUEGOS) {
+				juego.cantidad++
+			}
+			return juego
+		})
+		setCarrito(nuevoCarrito)
+	}
+
+	function remove1Juego(idJuego) {
+		const MIN_JUEGOS = 1
+		const nuevoCarrito = carrito.map(juego => {
+			if (juego.id === idJuego && juego.cantidad > MIN_JUEGOS) {
+				juego.cantidad--
+			}
+			return juego
+		})
+		setCarrito(nuevoCarrito)
+	}
+
 	return (
 		<>
 			<div className="container-fluid d-flex flex-column vh-100">
@@ -31,7 +68,12 @@ function App() {
 				<Header />
 
 				{/* OFFCANVAS CARRITO */}
-				<PanelCarrito carrito={carrito} />
+				<PanelCarrito
+					carrito={carrito}
+					removeJuegoCarrito={removeJuegoCarrito}
+					add1Juego={add1Juego}
+					remove1Juego={remove1Juego}
+				/>
 
 				{/* JUEGOS */}
 				<main className="flex-grow-1">
