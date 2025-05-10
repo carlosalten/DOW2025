@@ -1,4 +1,4 @@
-export default function PanelCarrito({ carrito, removeJuegoCarrito, add1Juego, remove1Juego }) {
+export default function PanelCarrito({ carrito, removeJuegoCarrito, add1Juego, remove1Juego, vaciarCarrito }) {
 	const totalCarrito = () => carrito.reduce((total, juego) => total + juego.precio * juego.cantidad, 0)
 	return (
 		<div className="offcanvas offcanvas-end" tabIndex="-1" id="ocCarrito" aria-labelledby="offcanvasExampleLabel">
@@ -57,8 +57,15 @@ export default function PanelCarrito({ carrito, removeJuegoCarrito, add1Juego, r
 								</tbody>
 							</table>
 						</div>
+
 						<div className="alert alert-light text-end">
 							<span className="fw-bold">Total:</span> ${totalCarrito().toLocaleString('es-ES')}
+						</div>
+
+						<div className="d-grid">
+							<button className="btn btn-sm btn-outline-secondary" onClick={() => vaciarCarrito()}>
+								Vaciar Carrito
+							</button>
 						</div>
 					</>
 				)}

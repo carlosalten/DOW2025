@@ -61,11 +61,15 @@ function App() {
 		setCarrito(nuevoCarrito)
 	}
 
+	function vaciarCarrito() {
+		setCarrito([])
+	}
+
 	return (
 		<>
 			<div className="container-fluid d-flex flex-column vh-100">
 				{/* ENCABEZADO */}
-				<Header />
+				<Header carrito={carrito} />
 
 				{/* OFFCANVAS CARRITO */}
 				<PanelCarrito
@@ -73,6 +77,7 @@ function App() {
 					removeJuegoCarrito={removeJuegoCarrito}
 					add1Juego={add1Juego}
 					remove1Juego={remove1Juego}
+					vaciarCarrito={vaciarCarrito}
 				/>
 
 				{/* JUEGOS */}

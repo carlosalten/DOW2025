@@ -1,4 +1,6 @@
-export default function Header() {
+export default function Header({ carrito }) {
+	const cantidadCarrito = () => carrito.reduce((cant, juego) => cant + juego.cantidad, 0)
+
 	return (
 		<header className="border-bottom pb-1 mb-2">
 			<div className="row">
@@ -14,7 +16,9 @@ export default function Header() {
 						data-bs-target="#ocCarrito"
 					>
 						<i className="bi bi-cart3 fs-4"></i>
-						<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">2</span>
+						<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+							{cantidadCarrito()}
+						</span>
 					</button>
 				</div>
 			</div>
