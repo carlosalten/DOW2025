@@ -1,29 +1,39 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express'
+import Producto from '../models/Producto'
 
 //Retorna la lista de productos
-export const getProductos = async (request: Request,response: Response)=>{
-    response.json("Lista de productos")
+export const getProductos = async (request: Request, response: Response) => {
+	// response.json("Lista de productos")
+	// const productos = await Producto.findAll()
+	const productos = await Producto.findAll({
+		order: [
+			['nombre', 'ASC'],
+			['precio', 'DESC'],
+		],
+		attributes: { exclude: ['createdAt', 'updatedAt'] },
+	})
+	response.json({ data: productos })
 }
 
 //Retorna los datos de 1 producto en particular
-export const getProductoById = async (request: Request,response: Response)=>{
-    const {id} = request.params
-    response.json("Detalle de producto "+id)
+export const getProductoById = async (request: Request, response: Response) => {
+	const { id } = request.params
+	response.json('Detalle de producto ' + id)
 }
 
 //Inserta un nuevo producto en la BD
-export const crearProducto = async (request:Request,response:Response)=>{
-    response.json("Crear producto")
+export const crearProducto = async (request: Request, response: Response) => {
+	response.json('Crear producto')
 }
 
 //Edita 1 o más campos de un producto
-export const editarProducto = async (request:Request,response:Response)=>{
-    const {id} = request.params
-    response.json("Modificar el producto "+id)
+export const editarProducto = async (request: Request, response: Response) => {
+	const { id } = request.params
+	response.json('Modificar el producto ' + id)
 }
 
 //Borra un producto de la BD
-export const borrarProducto = async (request:Request,response:Response)=>{
-    const {id} = request.params
-    response.json("Borrar el producto "+id)
+export const borrarProducto = async (request: Request, response: Response) => {
+	const { id } = request.params
+	response.json('Borrar el producto ' + id)
 }

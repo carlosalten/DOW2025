@@ -1,7 +1,17 @@
 import { Request, Response } from 'express'
+import Producto from '../models/Producto'
 
 export const getProductos = async (request: Request, response: Response) => {
-	response.json('Lista de Productos')
+	// response.json('Lista de Productos')
+	// const productos = await Producto.findAll()
+	const productos = await Producto.findAll({
+		order: [
+			['nombre', 'ASC'],
+			['precio', 'DESC'],
+		],
+		attributes: { exclude: ['createdAt', 'updatedAt'] },
+	})
+	response.json({ data: productos })
 }
 
 export const getProductoById = async (request: Request, response: Response) => {

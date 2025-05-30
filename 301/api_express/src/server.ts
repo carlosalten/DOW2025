@@ -8,7 +8,7 @@ const server = Express()
 async function conectarBD() {
 	try {
 		await db.authenticate()
-		db.sync
+		db.sync()
 		console.log('Conexión a BD exitosa')
 	} catch (error) {
 		console.log('No se pudo conectar a la BD')
