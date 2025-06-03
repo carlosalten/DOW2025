@@ -11,6 +11,7 @@ const db = new Sequelize({
 	username: process.env.DB_USER,
 	password: process.env.DB_PASSWORD,
 	models: [__dirname + '/../models/**/*.ts'],
+	define: { timestamps: false },
 })
 
 export default db

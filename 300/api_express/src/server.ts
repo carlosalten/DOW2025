@@ -1,28 +1,27 @@
-import Express from "express";
-import router from "./router"
-import db from "./config/db";
+import Express from 'express'
+import router from './router'
+import db from './config/db'
 
 const server = Express()
 
 //Conecta a la BD
-async function conectarBD(){
-    try {
-        await db.authenticate()
-        db.sync()
-        console.log('Conexión a BD exitosa')
-    } catch (error) {
-        console.log('No se pudo conectar a la BD')
-        console.log(error)
-    }
+async function conectarBD() {
+	try {
+		await db.authenticate()
+		db.sync()
+		console.log('Conexión a BD exitosa')
+	} catch (error) {
+		console.log('No se pudo conectar a la BD')
+		console.log(error)
+	}
 }
 
 conectarBD()
-
 
 // server.get('/',(request,response)=>{
 //     response.send('Hola Mundo Express')
 // })
 
-server.use('/api',router)
+server.use('/api', router)
 
 export default server
