@@ -9,14 +9,13 @@ export const getProductos = async (request: Request, response: Response) => {
 			['nombre', 'ASC'],
 			['precio', 'DESC'],
 		],
-		attributes: { exclude: ['createdAt', 'updatedAt'] },
 	})
 	response.json({ data: productos })
 }
 
-export const getProductoById = async (request: Request, response: Response) => {
-	const { id } = request.params
-	response.json('Detalle de producto: ' + id)
+export const getProductoByCodigo = async (request: Request, response: Response) => {
+	const { codigo } = request.params
+	response.json('Detalle de producto: ' + codigo)
 }
 
 export const createProducto = async (request: Request, response: Response) => {
@@ -24,11 +23,11 @@ export const createProducto = async (request: Request, response: Response) => {
 }
 
 export const updateProducto = async (request: Request, response: Response) => {
-	const { id } = request.params
-	response.json('Modificar el producto: ' + id)
+	const { codigo } = request.params
+	response.json('Modificar el producto: ' + codigo)
 }
 
 export const deleteProducto = async (request: Request, response: Response) => {
-	const { id } = request.params
-	response.json('Borrar el producto: ' + id)
+	const { codigo } = request.params
+	response.json('Borrar el producto: ' + codigo)
 }
