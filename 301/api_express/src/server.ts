@@ -18,10 +18,10 @@ async function conectarBD() {
 
 conectarBD()
 
-// server.get('/saludar', (request, response) => {
-// 	response.send('Hola desde Express')
-// })
+//Habilita el API para recibir datos desde el cliente
+server.use(Express.json())
 
+//Endpoints que comiencen con '/api' son manejados por router.ts
 server.use('/api', router)
 
 export default server
