@@ -21,17 +21,17 @@ export default function NavBar() {
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
-							<NavLink to="/" className="nav-link">
+							<NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
 								Inicio
 							</NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink to="/categorias" className="nav-link">
+							<NavLink to="/categorias" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
 								Categorías
 							</NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink to="/productos" className="nav-link">
+							<NavLink to="/productos" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
 								Productos
 							</NavLink>
 						</li>

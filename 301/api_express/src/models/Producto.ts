@@ -1,6 +1,4 @@
-//P:lo puede dejar como comentario?
-//R:los modelos son siempre en singular.
-import { Table, Column, DataType, Model, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript'
 import Categoria from './Categoria'
 
 @Table({ tableName: 'productos' })
