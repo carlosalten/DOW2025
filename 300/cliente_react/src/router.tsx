@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Layout from './layouts/Layouts'
 import Home from './views/Home'
-import Categorias from './views/Categorias'
+import Categorias, { loader as loaderCategorias } from './views/Categorias'
 import CategoriasCrear from './views/CategoriasCrear'
 import Productos from './views/Productos'
 import ProductosCrear from './views/ProductosCrear'
@@ -18,6 +18,7 @@ export const router = createBrowserRouter([
 			{
 				path: 'categorias',
 				element: <Categorias />,
+				loader: loaderCategorias,
 			},
 			{
 				path: 'categorias/crear',

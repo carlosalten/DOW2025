@@ -1,6 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
+import { getCategoriasConCantidadProductos } from '../services/CategoriaService'
+import type { CategoriaConCantidadProductos } from '../types/categoria'
+import CategoriaFila from '../components/CategoriaFila'
+
+export async function loader() {
+	const categorias = await getCategoriasConCantidadProductos()
+	// console.log(categorias)
+	return categorias
+}
 
 export default function Categorias() {
+	const categorias = useLoaderData() as CategoriaConCantidadProductos[]
 	return (
 		<>
 			<h2>Categorías</h2>
@@ -34,38 +44,9 @@ export default function Categorias() {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td className="text-center">1</td>
-							<td>Computadores</td>
-							<td className="text-end">5</td>
-							<td className="text-center">
-								<button className="btn btn-sm btn-info">
-									<i className="bi bi-info-circle"></i>
-								</button>
-								<button className="btn btn-sm btn-warning mx-1">
-									<i className="bi bi-pencil-square"></i>
-								</button>
-								<button className="btn btn-sm btn-danger">
-									<i className="bi bi-trash3"></i>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td className="text-center">2</td>
-							<td>Tablets</td>
-							<td className="text-end">5</td>
-							<td className="text-center">
-								<button className="btn btn-sm btn-info">
-									<i className="bi bi-info-circle"></i>
-								</button>
-								<button className="btn btn-sm btn-warning mx-1">
-									<i className="bi bi-pencil-square"></i>
-								</button>
-								<button className="btn btn-sm btn-danger">
-									<i className="bi bi-trash3"></i>
-								</button>
-							</td>
-						</tr>
+						{categorias.map((categoria, index) => (
+							<CategoriaFila key={categoria.id} index={index} categoria={categoria} />
+						))}
 					</tbody>
 				</table>
 			</div>

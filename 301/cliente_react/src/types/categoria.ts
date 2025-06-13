@@ -6,7 +6,15 @@ export const CategoriaSchema = object({
 	nombre: string(),
 })
 
+export const CategoriaConCantidadProductosSchema = object({
+	id: number(),
+	nombre: string(),
+	cantidadProductos: number(),
+})
+
 export const CategoriasSchema = array(CategoriaSchema)
+export const CategoriasConCantidadProductosSchema = array(CategoriaConCantidadProductosSchema)
 
 //Types
 export type Categoria = InferOutput<typeof CategoriaSchema>
+export type CategoriaConCantidadProductos = InferOutput<typeof CategoriaConCantidadProductosSchema>
