@@ -1,6 +1,15 @@
-import { Link } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
+import { getProductosConCategoria } from '../services/ProductoService'
+import type { ProductoConCategoria } from '../types/producto'
+import ProductoFila from '../components/ProductoFila'
+
+export async function loader() {
+	const productos = await getProductosConCategoria()
+	return productos
+}
 
 export default function Productos() {
+	const productos = useLoaderData() as ProductoConCategoria[]
 	return (
 		<>
 			<h2>Productos</h2>
@@ -36,36 +45,9 @@ export default function Productos() {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td className="text-center">1</td>
-							<td>Laptop Gaming Ryzen 7</td>
-							<td className="text-end">$1.200.000</td>
-							<td className="text-end">10</td>
-							<td>Computadores</td>
-							<td className="text-center">
-								<button className="btn btn-sm btn-warning me-1">
-									<i className="bi bi-pencil-square"></i>
-								</button>
-								<button className="btn btn-sm btn-danger">
-									<i className="bi bi-trash3"></i>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td className="text-center">2</td>
-							<td>Desktop Intel i9</td>
-							<td className="text-end">$1.500.000</td>
-							<td className="text-end">8</td>
-							<td>Computadores</td>
-							<td className="text-center">
-								<button className="btn btn-sm btn-warning me-1">
-									<i className="bi bi-pencil-square"></i>
-								</button>
-								<button className="btn btn-sm btn-danger">
-									<i className="bi bi-trash3"></i>
-								</button>
-							</td>
-						</tr>
+						{productos.map((producto, index) => (
+							<ProductoFila key={producto.codProducto} index={index} producto={producto} />
+						))}
 					</tbody>
 				</table>
 			</div>

@@ -3,7 +3,7 @@ import Layout from './layouts/Layouts'
 import Home from './views/Home'
 import Categorias, { loader as loaderCategorias } from './views/Categorias'
 import CategoriasCrear from './views/CategoriasCrear'
-import Productos from './views/Productos'
+import Productos, { loader as loaderProductos } from './views/Productos'
 import ProductosCrear from './views/ProductosCrear'
 
 export const router = createBrowserRouter([
@@ -27,6 +27,7 @@ export const router = createBrowserRouter([
 			{
 				path: 'productos',
 				element: <Productos />,
+				loader: loaderProductos,
 			},
 			{
 				path: 'productos/crear',

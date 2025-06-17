@@ -8,7 +8,9 @@ const server = Express()
 //Conecta a la BD
 async function conectarBD() {
 	try {
+		//conectar a la bd
 		await db.authenticate()
+		//crear las tablas en base a los modelos
 		db.sync()
 		console.log('Conexión a BD exitosa')
 	} catch (error) {
