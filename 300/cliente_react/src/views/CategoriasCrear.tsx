@@ -1,4 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Form, Link, redirect, type ActionFunctionArgs } from 'react-router-dom'
+import { categoriaCrear } from '../services/CategoriaService'
+
+export async function action({ request }: ActionFunctionArgs) {
+	const formData = Object.fromEntries(await request.formData())
+	const resultado = await categoriaCrear(formData)
+	if (!resultado?.success) {
+		return resultado
+	}
+	return redirect('/categorias')
+}
 
 export default function CategoriasCrear() {
 	return (
@@ -28,7 +38,7 @@ export default function CategoriasCrear() {
 			</div>
 			<div className="card">
 				<div className="card-body">
-					<form>
+					<Form method="POST">
 						<div className="mb-3">
 							<label className="form-label" htmlFor="nombre">
 								Nombre
@@ -43,7 +53,7 @@ export default function CategoriasCrear() {
 								Agregar Categoría
 							</button>
 						</div>
-					</form>
+					</Form>
 				</div>
 			</div>
 		</>

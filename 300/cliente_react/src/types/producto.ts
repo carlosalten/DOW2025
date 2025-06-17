@@ -1,4 +1,4 @@
-import { array, number, object, string, type InferOutput } from 'valibot'
+import { array, number, object, pipe, string, transform, type InferOutput } from 'valibot'
 
 //Categoria que solo tiene nombre
 export const CategoriaSimpleSchema = object({
@@ -12,6 +12,27 @@ export const ProductoConCategoriaSchema = object({
 	precio: number(),
 	stock: number(),
 	categoria: CategoriaSimpleSchema,
+})
+
+//Schema para agregar producto
+export const ProductoFormSchema = object({
+	codProducto: string(),
+	nombre: string(),
+	precio: pipe(
+		string(),
+		transform((input: string) => Number(input)),
+		number()
+	),
+	stock: pipe(
+		string(),
+		transform((input: string) => Number(input)),
+		number()
+	),
+	categoriaId: pipe(
+		string(),
+		transform((input: string) => Number(input)),
+		number()
+	),
 })
 
 export const ProductosConCategoriaSchema = array(ProductoConCategoriaSchema)

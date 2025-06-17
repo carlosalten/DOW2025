@@ -1,6 +1,24 @@
-import { Link } from 'react-router-dom'
+import { Form, Link, redirect, useLoaderData, type ActionFunctionArgs } from 'react-router-dom'
+import { getCategorias } from '../services/CategoriaService'
+import type { Categoria } from '../types/categoria'
+import { productoCrear } from '../services/ProductoService'
+
+export async function action({ request }: ActionFunctionArgs) {
+	const formData = Object.fromEntries(await request.formData())
+	const resultado = await productoCrear(formData)
+	if (!resultado?.success) {
+		return resultado
+	}
+	return redirect('/productos')
+}
+
+export async function loader() {
+	const categorias = getCategorias()
+	return categorias
+}
 
 export default function ProductosCrear() {
+	const categorias = useLoaderData() as Categoria[]
 	return (
 		<>
 			<h2>Crear Producto</h2>
@@ -28,7 +46,7 @@ export default function ProductosCrear() {
 			</div>
 			<div className="card">
 				<div className="card-body">
-					<form>
+					<Form method="POST">
 						<div className="mb-3">
 							<label className="form-label" htmlFor="codProducto">
 								Código
@@ -58,11 +76,12 @@ export default function ProductosCrear() {
 								Categoría
 							</label>
 							<select className="form-select" id="categoriaId" name="categoriaId">
-								<option selected>Seleccione una Categoría</option>
-								<option value="1">Computadores</option>
-								<option value="2">Tablets</option>
-								<option value="3">Smartphones</option>
-								<option value="3">Accesorios</option>
+								<option value="0">Seleccione una Categoría</option>
+								{categorias.map(categoria => (
+									<option key={categoria.id} value={categoria.id}>
+										{categoria.nombre}
+									</option>
+								))}
 							</select>
 						</div>
 						<div className="mb-3 text-end">
@@ -73,7 +92,7 @@ export default function ProductosCrear() {
 								Agregar Producto
 							</button>
 						</div>
-					</form>
+					</Form>
 				</div>
 			</div>
 		</>

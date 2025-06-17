@@ -2,9 +2,12 @@ import { createBrowserRouter } from 'react-router-dom'
 import Layout from './layouts/Layouts'
 import Home from './views/Home'
 import Categorias, { loader as loaderCategorias } from './views/Categorias'
-import CategoriasCrear from './views/CategoriasCrear'
+import CategoriasCrear, { action as actionCrearCategoria } from './views/CategoriasCrear'
 import Productos, { loader as loaderProductos } from './views/Productos'
-import ProductosCrear from './views/ProductosCrear'
+import ProductosCrear, {
+	loader as loaderCategoriasCrearProducto,
+	action as actionCrearProducto,
+} from './views/ProductosCrear'
 
 export const router = createBrowserRouter([
 	{
@@ -23,6 +26,7 @@ export const router = createBrowserRouter([
 			{
 				path: 'categorias/crear',
 				element: <CategoriasCrear />,
+				action: actionCrearCategoria,
 			},
 			{
 				path: 'productos',
@@ -32,6 +36,8 @@ export const router = createBrowserRouter([
 			{
 				path: 'productos/crear',
 				element: <ProductosCrear />,
+				loader: loaderCategoriasCrearProducto,
+				action: actionCrearProducto,
 			},
 		],
 	},

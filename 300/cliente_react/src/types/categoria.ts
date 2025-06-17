@@ -12,6 +12,11 @@ export const CategoriaConCantidadProductosSchema = object({
 	cantidadProductos: number(),
 })
 
+//Schema para validar form
+export const CategoriaFormSchema = object({
+	nombre: string(),
+})
+
 export const CategoriasSchema = array(CategoriaSchema)
 export const CategoriasConCantidadProductosSchema = array(CategoriaConCantidadProductosSchema)
 
